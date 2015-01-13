@@ -1,5 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kephlog</title><link href="http://keph.github.io/" rel="alternate"></link><link href="http://keph.github.io/feeds/all.atom.xml" rel="self"></link><id>http://keph.github.io/</id><updated>2015-01-12T00:00:00+01:00</updated><entry><title>Jechane</title><link href="http://keph.github.io/jechane.html" rel="alternate"></link><updated>2015-01-12T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-12:jechane.html</id><summary type="html">&lt;p&gt;Jedziemy z tematem blogasa. Napisałem tu najpierw polskie luźne tłumaczenie
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kephlog</title><link href="http://keph.github.io/" rel="alternate"></link><link href="http://keph.github.io/feeds/all.atom.xml" rel="self"></link><id>http://keph.github.io/</id><updated>2015-01-13T00:00:00+01:00</updated><entry><title>Fathergasted</title><link href="http://keph.github.io/fathergasted.html" rel="alternate"></link><updated>2015-01-13T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-13:fathergasted.html</id><summary type="html">&lt;p&gt;One of the factors that drove me to my resolution of writing this here blog
+was that when my son was born earlier last year, I started... what's the word?
+Not microblogging, because I was definitely over twitter's limit. Not,
+strictly speaking, blogging, because a) it was still fairly short, and b) it
+was piggybacking on Facebook, of all things. Minifaceblogging? Idunno.&lt;/p&gt;
+&lt;p&gt;Anyway, before you say anything, I made a conscious decision to do whatever I
+can to not get sucked into your typical "new parent squees about babby that
+was formed". So no marvelling at poop, no overzealous diminutives --
+basically, I tried to think about all the shit that would have pissed me off
+if I ever saw it on my FB wall, and then not do them. Whether I succeeded is
+not really mine to decide, though I hope that I managed to accomplish my goal
+at least to some degree.&lt;/p&gt;
+&lt;h2&gt;So, about that title,&lt;/h2&gt;
+&lt;p&gt;Originally, partly due to the majority of people on my FB speaking Polish, the
+posts were also in Polish. But there's another factor (apart from my incurable
+laziness): I couldn't come up with a decent English equivalent of the name I
+came up for the title, 'tactwo'. A portmanteau of the word for 'dad', and an
+ending '-ctwo' implying "I have no idea what I'm doing".&lt;/p&gt;
+&lt;p&gt;Which, let's face it, is every new parent's default state. I don't care how
+much theory you learned beforehand, how much you THINK you know, when all that
+(occasionally literal) shit goes down, you will find yourself not knowing what
+even the single solitary fuck.&lt;/p&gt;
+&lt;p&gt;Thanks to GargajCNS of IRC channel #imgurians fame, I think we finally have a
+decent equivalent that I feel encompasses all that I tried to convey with the
+title: &lt;em&gt;fathergasted&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In this tag you will find posts I originally wrote for FB, except translated
+and made into a director's cut version, of sorts. Time and will permitting, of
+course.&lt;/p&gt;
+&lt;p&gt;Now that we've established what this is, one question remains: the blogging
+platform I'm currently using lets me ~~do ORWELLIAN RETCONS OF REALITY~~
+backdate my posts. So should I set the date of the posts to what it originally
+was on FB, or just to whenever I got around to posting them? Hmm.&lt;/p&gt;</summary><category term="fathergasted"></category><category term="tactwo"></category></entry><entry><title>Jechane</title><link href="http://keph.github.io/jechane.html" rel="alternate"></link><updated>2015-01-12T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-12:jechane.html</id><summary type="html">&lt;p&gt;Jedziemy z tematem blogasa. Napisałem tu najpierw polskie luźne tłumaczenie
 angielskiej wersji notki, ale żona wyśmiała mnie, że wyszło zbyt pompatycznie
 i pretensjonalnie. Toteż chuj - formalniejsza wersja jest po angielsku,
 zapraszam do zapoznania się i/lub BYŁO SIĘ JĘZYKÓW W SZKOLE UCZYĆ NA LEKCJACH
@@ -30,5 +61,4 @@ to you. Unless you can read Polish.&lt;/p&gt;
 which, if you're not into the whole Poland thing, you might possibly appreciate.&lt;/p&gt;
 &lt;p&gt;You know, if this ever goes anywhere. And since this is both &lt;em&gt;another&lt;/em&gt; blog attempt
 &lt;em&gt;AND&lt;/em&gt; a New Year resolution, I wouldn't exactly bet money on it.
-&lt;em&gt;AND I'M THE AUTHOR.&lt;/em&gt;&lt;/p&gt;</summary></entry><entry><title>Testing 1, 2, 3</title><link href="http://keph.github.io/testing-1-2-3.html" rel="alternate"></link><updated>1970-01-01T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,1970-01-01:testing-1-2-3.html</id><summary type="html">&lt;p&gt;Github's being a bit of a dick. Okay, granted, it's like 60% my fault,
-but still, there's like 40 percent's worth of dickery.&lt;/p&gt;</summary></entry></feed>
+&lt;em&gt;AND I'M THE AUTHOR.&lt;/em&gt;&lt;/p&gt;</summary></entry></feed>
