@@ -22,7 +22,76 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://keph.github.io/fathergasted.html">Fathergasted</a></h1>
+                    <h1 class="entry-title"><a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html">Getting pelican to play well with Windows + GitHub...</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-01-16T00:00:00+01:00">
+                Published: Pt 16 styczeń 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://keph.github.io/author/keph.html">Keph</a>
+        </address>
+<p>In <a href="http://keph.github.io/category/en.html">en</a>. </p>
+<p>tags: <a href="http://keph.github.io/tag/nerdness.html">nerdness</a> <a href="http://keph.github.io/tag/python.html">python</a> <a href="http://keph.github.io/tag/vaguely-helpful.html">vaguely helpful?</a> <a href="http://keph.github.io/tag/tutorial.html">tutorial</a> </p>
+</footer><!-- /.post-info --><h2>..or: how the sausage is made</h2>
+<p>Setting up this blog was a bit of a hassle. At least, compared to what I expected, based on what I know about git and Python, the two main technologies underlying the whole thing. I'm writing this in hopes that someone struggling with setting up the whole shebang will find that post and, hell who knows, maybe even find it useful. So, without further ado:</p>
+<p><a href="http://blog.getpelican.com/">Pelican</a>, the tool that's powering this blog, is a bit of a dick.</p>
+<p>How's <em>this</em> for a catchy headline?</p>
+<p>More to the point, its documentation, while otherwise pretty great, is somewhat lacking when it comes to using Pelican in a Windows environment.</p>
+<blockquote>
+<p>Inb4 "Keph you dumb noob, turn in your nerd cred card for not using linux", I would -- and in fact, I have this celebrated nerd puzzle installed on a separate partition. Thing is, I have a laptop that runs in preposterously high resolution (3200x1800 on a 13" screen, and I have found it literally impossible to use Linux without at least <em>some</em> part of it looking like raw butts. This will probably end up as a separate post.</p>
+</blockquote>
+<p>Anyway! First thing's first, you gotta get yourself some <a href="http://python.org">Python</a> and get that shit installed. Personally, I would recommend you download Python 3.x, unless you're a seasoned developer dealing with legacy systems.</p>
+<p>Hint: if all you're gonna be doing is running a blog, <em>you're probably not</em>.</p>
+<p>And even if you are at your day job or wherever, this is irrelevant. I recommend you install that shit anyway as its own separate thing, <strong><em>IT'S ALL GOING TO BE OKAY, it's got its own separate folder and everything</em></strong>.</p>
+<p>Note that this is not intended to be a full guide to working with Pelican. There's <a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html">official instructions</a> for that. I'm only here for some of the Windows-, and Github Pages-related gotchas I came across so far.</p>
+<p>So, basically, follow the instructions right up until:</p>
+<p><code>pip install pelican markdown</code></p>
+<blockquote>
+<p><strong>NOTE:</strong> It might be worth mentioning that, when you were installing Python, the installer's default is, curiously, not to add Python to your PATH environment variable. So if you left that unchecked and just rolled with it, you gotta add <code>[whatever_you_installed_python_to]</code> to the PATH, and, for good measure, <code>[whatever_you_installed_python_to]\Scripts</code> too, 'cause that's where pip sits.</p>
+</blockquote>
+<p>Now, weird thing I noticed, the versions I installed from pip don't seem to pull in dependencies even though they should. So when you follow the <a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html">quickstart instructions</a> and type <code>pelican-quickstart</code> you might see Pelican borking the fuck out, like so:</p>
+<blockquote>
+<p><code>ImportError: No module named some_module_or_other</code></p>
+</blockquote>
+<p>There might be a better solution to this, but basically what I'd recommend is <s>employing violence</s> running python-quickstart repeatedly, seeing what module it was unable to load, then installing said module via pip. Repeat until <s>beaten to a bloody pulp</s> successful.</p>
+<p>Now that you have both pelican and markdown installed, write your blog stuff, preferably in the <code>content</code> subdirectory of the project you just created with pelican-quickstart.</p>
+<h2>Compiling your blog to html</h2>
+<p>As far as I can tell, Pelican's supposed to make (haha, preemptive pun) the whole process crazy easy with a makefile or, if that's not your jam, a fabfile. Obviously, unless you go Cygwin or whatever, make's not an option. Thing is, if you're running Python 3, neither's fab. I... think? I read it's <em>supposed</em> to <em>kinda, sorta</em> work these days but personally, the most "success" I had with it is getting it to fuck up in <em>different</em> ways rather than just one. So... yay I guess?</p>
+<p>So automation's out of the question, unless you roll your own. I guess it's a good thing then that it's fairly straightforward, huh?</p>
+<p>Building a quick preview, so that you can see your theme's not fucked and your fancy formatting is displaying properly is dead simple, just run:</p>
+<p><code>pelican content</code> (Or substitute 'content' with wherever your source files for the blog are)</p>
+<p>This'll generate the whole HTML bundle in the <code>./output</code> directory right nearby.</p>
+<p>Now, once you're production-ready, you simply add <code>-s publishconf.py</code> to the whole deal, like so:</p>
+<p><code>pelican -s publishconf.py content</code></p>
+<p>So since the ./output is what you'd put on your server, all you gotta do to make it work with <a href="https://pages.github.com/">github pages</a> (click for instructions) is just:
+    1. Clone your site repo to that dir,
+    2. Run the command above,
+    3. Get that shit commited
+    4. <code>git push</code> like a bawss?</p>
+<p>Right?</p>
+<h2>Fuck no, that would've been too simple.</h2>
+<p>...But don't worry, we're <em>almost</em> there!</p>
+<p>See, thing about Pelican processing all that shit is <strong>it <em>will</em> nuke everything in the output dir <em>unless you tell it otherwise</em></strong>.</p>
+<p>Fortunately, that's a pretty easy fix, you just need to be aware of it. Basically, just open one of your config files, either <code>pelicanconf.py</code> or <code>publishconf.py</code> will do. I would recommend using the former. The latter imports all of <code>pelicanconf.py</code>'s variables into its namespace anyway.</p>
+<p>Now in said config, you gotta add:</p>
+<p><code>OUTPUT_RETENTION = (".hg", ".git", ".bzr", "README.md")</code></p>
+<p>Of course, feel free to add or remove anything to that tuple, that's what it's there for. Everything set in OUTPUT_RETENTION will not be deleted from the <code>output</code> directory. Fairly straightforward.</p>
+<p><em>NOW</em> you can go ahead and use that 4-step instruction guide just above, and you should be golden.</p>
+<p>Now get blogging.</p><p>There are <a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://keph.github.io/fathergasted.html" rel="bookmark"
+                           title="Permalink to Fathergasted">Fathergasted</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-01-13T00:00:00+01:00">
                 Published: Wt 13 styczeń 2015
@@ -33,43 +102,13 @@
         </address>
 <p>In <a href="http://keph.github.io/category/en.html">en</a>. </p>
 <p>tags: <a href="http://keph.github.io/tag/fathergasted.html">fathergasted</a> <a href="http://keph.github.io/tag/tactwo.html">tactwo</a> </p>
-</footer><!-- /.post-info --><p>One of the factors that drove me to my resolution of writing this here blog
+</footer><!-- /.post-info -->                <p>One of the factors that drove me to my resolution of writing this here blog
 was that when my son was born earlier last year, I started... what's the word?
 Not microblogging, because I was definitely over twitter's limit. Not,
-strictly speaking, blogging, because a) it was still fairly short, and b) it
-was piggybacking on Facebook, of all things. Minifaceblogging? Idunno.</p>
-<p>Anyway, before you say anything, I made a conscious decision to do whatever I
-can to not get sucked into your typical "new parent squees about babby that
-was formed". So no marvelling at poop, no overzealous diminutives --
-basically, I tried to think about all the shit that would have pissed me off
-if I ever saw it on my FB wall, and then not do them. Whether I succeeded is
-not really mine to decide, though I hope that I managed to accomplish my goal
-at least to some degree.</p>
-<h2>So, about that title,</h2>
-<p>Originally, partly due to the majority of people on my FB speaking Polish, the
-posts were also in Polish. But there's another factor (apart from my incurable
-laziness): I couldn't come up with a decent English equivalent of the name I
-came up for the title, 'tactwo'. A portmanteau of the word for 'dad', and an
-ending '-ctwo' implying "I have no idea what I'm doing".</p>
-<p>Which, let's face it, is every new parent's default state. I don't care how
-much theory you learned beforehand, how much you THINK you know, when all that
-(occasionally literal) shit goes down, you will find yourself not knowing what
-even the single solitary fuck.</p>
-<p>Thanks to GargajCNS of IRC channel #imgurians fame, I think we finally have a
-decent equivalent that I feel encompasses all that I tried to convey with the
-title: <em>fathergasted</em>.</p>
-<p>In this tag you will find posts I originally wrote for FB, except translated
-and made into a director's cut version, of sorts. Time and will permitting, of
-course.</p>
-<p>Now that we've established what this is, one question remains: the blogging
-platform I'm currently using lets me <s>do ORWELLIAN RETCONS OF REALITY</s>
-backdate my posts. So should I set the date of the posts to what it originally
-was on FB, or just to whenever I got around to posting them? Hmm.</p><p>There are <a href="http://keph.github.io/fathergasted.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+strictly speaking, blogging, because a) it was still ...</p>
+                <a class="readmore" href="http://keph.github.io/fathergasted.html">read more</a>
+<p>There are <a href="http://keph.github.io/fathergasted.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

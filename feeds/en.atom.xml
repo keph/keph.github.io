@@ -1,5 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Kephlog</title><link href="http://keph.github.io/" rel="alternate"></link><link href="http://keph.github.io/feeds/en.atom.xml" rel="self"></link><id>http://keph.github.io/</id><updated>2015-01-13T00:00:00+01:00</updated><entry><title>Fathergasted</title><link href="http://keph.github.io/fathergasted.html" rel="alternate"></link><updated>2015-01-13T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-13:fathergasted.html</id><summary type="html">&lt;p&gt;One of the factors that drove me to my resolution of writing this here blog
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Kephlog</title><link href="http://keph.github.io/" rel="alternate"></link><link href="http://keph.github.io/feeds/en.atom.xml" rel="self"></link><id>http://keph.github.io/</id><updated>2015-01-16T00:00:00+01:00</updated><entry><title>Getting pelican to play well with Windows + GitHub...</title><link href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html" rel="alternate"></link><updated>2015-01-16T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-16:getting-pelican-to-play-well-with-windows-github.html</id><summary type="html">&lt;h2&gt;..or: how the sausage is made&lt;/h2&gt;
+&lt;p&gt;Setting up this blog was a bit of a hassle. At least, compared to what I expected, based on what I know about git and Python, the two main technologies underlying the whole thing. I'm writing this in hopes that someone struggling with setting up the whole shebang will find that post and, hell who knows, maybe even find it useful. So, without further ado:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;, the tool that's powering this blog, is a bit of a dick.&lt;/p&gt;
+&lt;p&gt;How's &lt;em&gt;this&lt;/em&gt; for a catchy headline?&lt;/p&gt;
+&lt;p&gt;More to the point, its documentation, while otherwise pretty great, is somewhat lacking when it comes to using Pelican in a Windows environment.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Inb4 "Keph you dumb noob, turn in your nerd cred card for not using linux", I would -- and in fact, I have this celebrated nerd puzzle installed on a separate partition. Thing is, I have a laptop that runs in preposterously high resolution (3200x1800 on a 13" screen, and I have found it literally impossible to use Linux without at least &lt;em&gt;some&lt;/em&gt; part of it looking like raw butts. This will probably end up as a separate post.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Anyway! First thing's first, you gotta get yourself some &lt;a href="http://python.org"&gt;Python&lt;/a&gt; and get that shit installed. Personally, I would recommend you download Python 3.x, unless you're a seasoned developer dealing with legacy systems.&lt;/p&gt;
+&lt;p&gt;Hint: if all you're gonna be doing is running a blog, &lt;em&gt;you're probably not&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;And even if you are at your day job or wherever, this is irrelevant. I recommend you install that shit anyway as its own separate thing, &lt;strong&gt;&lt;em&gt;IT'S ALL GOING TO BE OKAY, it's got its own separate folder and everything&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Note that this is not intended to be a full guide to working with Pelican. There's &lt;a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html"&gt;official instructions&lt;/a&gt; for that. I'm only here for some of the Windows-, and Github Pages-related gotchas I came across so far.&lt;/p&gt;
+&lt;p&gt;So, basically, follow the instructions right up until:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pip install pelican markdown&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; It might be worth mentioning that, when you were installing Python, the installer's default is, curiously, not to add Python to your PATH environment variable. So if you left that unchecked and just rolled with it, you gotta add &lt;code&gt;[whatever_you_installed_python_to]&lt;/code&gt; to the PATH, and, for good measure, &lt;code&gt;[whatever_you_installed_python_to]\Scripts&lt;/code&gt; too, 'cause that's where pip sits.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Now, weird thing I noticed, the versions I installed from pip don't seem to pull in dependencies even though they should. So when you follow the &lt;a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html"&gt;quickstart instructions&lt;/a&gt; and type &lt;code&gt;pelican-quickstart&lt;/code&gt; you might see Pelican borking the fuck out, like so:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;ImportError: No module named some_module_or_other&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There might be a better solution to this, but basically what I'd recommend is &lt;s&gt;employing violence&lt;/s&gt; running python-quickstart repeatedly, seeing what module it was unable to load, then installing said module via pip. Repeat until &lt;s&gt;beaten to a bloody pulp&lt;/s&gt; successful.&lt;/p&gt;
+&lt;p&gt;Now that you have both pelican and markdown installed, write your blog stuff, preferably in the &lt;code&gt;content&lt;/code&gt; subdirectory of the project you just created with pelican-quickstart.&lt;/p&gt;
+&lt;h2&gt;Compiling your blog to html&lt;/h2&gt;
+&lt;p&gt;As far as I can tell, Pelican's supposed to make (haha, preemptive pun) the whole process crazy easy with a makefile or, if that's not your jam, a fabfile. Obviously, unless you go Cygwin or whatever, make's not an option. Thing is, if you're running Python 3, neither's fab. I... think? I read it's &lt;em&gt;supposed&lt;/em&gt; to &lt;em&gt;kinda, sorta&lt;/em&gt; work these days but personally, the most "success" I had with it is getting it to fuck up in &lt;em&gt;different&lt;/em&gt; ways rather than just one. So... yay I guess?&lt;/p&gt;
+&lt;p&gt;So automation's out of the question, unless you roll your own. I guess it's a good thing then that it's fairly straightforward, huh?&lt;/p&gt;
+&lt;p&gt;Building a quick preview, so that you can see your theme's not fucked and your fancy formatting is displaying properly is dead simple, just run:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelican content&lt;/code&gt; (Or substitute 'content' with wherever your source files for the blog are)&lt;/p&gt;
+&lt;p&gt;This'll generate the whole HTML bundle in the &lt;code&gt;./output&lt;/code&gt; directory right nearby.&lt;/p&gt;
+&lt;p&gt;Now, once you're production-ready, you simply add &lt;code&gt;-s publishconf.py&lt;/code&gt; to the whole deal, like so:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pelican -s publishconf.py content&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;So since the ./output is what you'd put on your server, all you gotta do to make it work with &lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt; (click for instructions) is just:
+    1. Clone your site repo to that dir,
+    2. Run the command above,
+    3. Get that shit commited
+    4. &lt;code&gt;git push&lt;/code&gt; like a bawss?&lt;/p&gt;
+&lt;p&gt;Right?&lt;/p&gt;
+&lt;h2&gt;Fuck no, that would've been too simple.&lt;/h2&gt;
+&lt;p&gt;...But don't worry, we're &lt;em&gt;almost&lt;/em&gt; there!&lt;/p&gt;
+&lt;p&gt;See, thing about Pelican processing all that shit is &lt;strong&gt;it &lt;em&gt;will&lt;/em&gt; nuke everything in the output dir &lt;em&gt;unless you tell it otherwise&lt;/em&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Fortunately, that's a pretty easy fix, you just need to be aware of it. Basically, just open one of your config files, either &lt;code&gt;pelicanconf.py&lt;/code&gt; or &lt;code&gt;publishconf.py&lt;/code&gt; will do. I would recommend using the former. The latter imports all of &lt;code&gt;pelicanconf.py&lt;/code&gt;'s variables into its namespace anyway.&lt;/p&gt;
+&lt;p&gt;Now in said config, you gotta add:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;OUTPUT_RETENTION = (".hg", ".git", ".bzr", "README.md")&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Of course, feel free to add or remove anything to that tuple, that's what it's there for. Everything set in OUTPUT_RETENTION will not be deleted from the &lt;code&gt;output&lt;/code&gt; directory. Fairly straightforward.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;NOW&lt;/em&gt; you can go ahead and use that 4-step instruction guide just above, and you should be golden.&lt;/p&gt;
+&lt;p&gt;Now get blogging.&lt;/p&gt;</summary><category term="nerdness"></category><category term="python"></category><category term="vaguely helpful?"></category><category term="tutorial"></category></entry><entry><title>Fathergasted</title><link href="http://keph.github.io/fathergasted.html" rel="alternate"></link><updated>2015-01-13T00:00:00+01:00</updated><author><name>Keph</name></author><id>tag:keph.github.io,2015-01-13:fathergasted.html</id><summary type="html">&lt;p&gt;One of the factors that drove me to my resolution of writing this here blog
 was that when my son was born earlier last year, I started... what's the word?
 Not microblogging, because I was definitely over twitter's limit. Not,
 strictly speaking, blogging, because a) it was still fairly short, and b) it
