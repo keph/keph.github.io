@@ -22,7 +22,34 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html">Getting pelican to play well with Windows + GitHub...</a></h1>
+                    <h1 class="entry-title"><a href="http://keph.github.io/nocki.html">Nocki</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-01-20T00:00:00+01:00">
+                Published: Wt 20 styczeń 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="http://keph.github.io/author/keph.html">Keph</a>
+        </address>
+<p>In <a href="http://keph.github.io/category/pl.html">pl</a>. </p>
+<p>tags: <a href="http://keph.github.io/tag/tactwo.html">tactwo</a> </p>
+</footer><!-- /.post-info --><p>Kiedy człowiek daje znać publicznie, że będzie rodzicem, jednymm z paragratulacyjnych standardów jest "nawysypiajcie się póki możecie, bo teraz to już na dobre osiemnaście lat co najmniej przepadło i pozamiatane". Takie tam heheszki.</p>
+<p>Ale czasem, kiedy budzi się człowiek piąty raz w ciągu jednej nocy, nie sposób się oprzeć wrażeniu, że kurde, <em>może coś jednak jest na rzeczy</em>. A czemu? Bo Bobe naszło, żeby się podrzeć trochę. Albo może deficyt atencji. Albo może trzeba było przytulić bobasa i pospacerować. Autentycznie kompletnie, absolutnie, totalnie nic konkretnego. I zdarza się.</p>
+<p>A potem, z rana kiedy już wszyscy wstali, zagajasz do takiego bobasu, że "dałeś nam do wiwatu w nocy trochę, co?" -- a ten uśmiecha się takim szczerym, promiennym, pyzatym uśmiechem, że momentalnie wyjebane masz na te nocne trudy. Jeszcze zdążysz odespać.</p>
+<p><sup>Aczkolwiek fakt faktem że resztę tygodnia chodzi człowiek jak terminalnie zruchany zombas</sup></p><p>There are <a href="http://keph.github.io/nocki.html#disqus_thread">comments</a>.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html" rel="bookmark"
+                           title="Permalink to Getting pelican to play well with Windows + GitHub...">Getting pelican to play well with Windows + GitHub...</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2015-01-16T00:00:00+01:00">
                 Published: Pt 16 styczeń 2015
@@ -33,57 +60,11 @@
         </address>
 <p>In <a href="http://keph.github.io/category/en.html">en</a>. </p>
 <p>tags: <a href="http://keph.github.io/tag/nerdness.html">nerdness</a> <a href="http://keph.github.io/tag/python.html">python</a> <a href="http://keph.github.io/tag/vaguely-helpful.html">vaguely helpful?</a> <a href="http://keph.github.io/tag/tutorial.html">tutorial</a> </p>
-</footer><!-- /.post-info --><h2>..or: how the sausage is made</h2>
-<p>Setting up this blog was a bit of a hassle. At least, compared to what I expected, based on what I know about git and Python, the two main technologies underlying the whole thing. I'm writing this in hopes that someone struggling with setting up the whole shebang will find that post and, hell who knows, maybe even find it useful. So, without further ado:</p>
-<p><a href="http://blog.getpelican.com/">Pelican</a>, the tool that's powering this blog, is a bit of a dick.</p>
-<p>How's <em>this</em> for a catchy headline?</p>
-<p>More to the point, its documentation, while otherwise pretty great, is somewhat lacking when it comes to using Pelican in a Windows environment.</p>
-<blockquote>
-<p>Inb4 "Keph you dumb noob, turn in your nerd cred card for not using linux", I would -- and in fact, I have this celebrated nerd puzzle installed on a separate partition. Thing is, I have a laptop that runs in preposterously high resolution (3200x1800 on a 13" screen, and I have found it literally impossible to use Linux without at least <em>some</em> part of it looking like raw butts. This will probably end up as a separate post.</p>
-</blockquote>
-<p>Anyway! First thing's first, you gotta get yourself some <a href="http://python.org">Python</a> and get that shit installed. Personally, I would recommend you download Python 3.x, unless you're a seasoned developer dealing with legacy systems.</p>
-<p>Hint: if all you're gonna be doing is running a blog, <em>you're probably not</em>.</p>
-<p>And even if you are at your day job or wherever, this is irrelevant. I recommend you install that shit anyway as its own separate thing, <strong><em>IT'S ALL GOING TO BE OKAY, it's got its own separate folder and everything</em></strong>.</p>
-<p>Note that this is not intended to be a full guide to working with Pelican. There's <a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html">official instructions</a> for that. I'm only here for some of the Windows-, and Github Pages-related gotchas I came across so far.</p>
-<p>So, basically, follow the instructions right up until:</p>
-<p><code>pip install pelican markdown</code></p>
-<blockquote>
-<p><strong>NOTE:</strong> It might be worth mentioning that, when you were installing Python, the installer's default is, curiously, not to add Python to your PATH environment variable. So if you left that unchecked and just rolled with it, you gotta add <code>[whatever_you_installed_python_to]</code> to the PATH, and, for good measure, <code>[whatever_you_installed_python_to]\Scripts</code> too, 'cause that's where pip sits.</p>
-</blockquote>
-<p>Now, weird thing I noticed, the versions I installed from pip don't seem to pull in dependencies even though they should. So when you follow the <a href="http://pelican.readthedocs.org/en/3.5.0/quickstart.html">quickstart instructions</a> and type <code>pelican-quickstart</code> you might see Pelican borking the fuck out, like so:</p>
-<blockquote>
-<p><code>ImportError: No module named some_module_or_other</code></p>
-</blockquote>
-<p>There might be a better solution to this, but basically what I'd recommend is <s>employing violence</s> running python-quickstart repeatedly, seeing what module it was unable to load, then installing said module via pip. Repeat until <s>beaten to a bloody pulp</s> successful.</p>
-<p>Now that you have both pelican and markdown installed, write your blog stuff, preferably in the <code>content</code> subdirectory of the project you just created with pelican-quickstart.</p>
-<h2>Compiling your blog to html</h2>
-<p>As far as I can tell, Pelican's supposed to make (haha, preemptive pun) the whole process crazy easy with a makefile or, if that's not your jam, a fabfile. Obviously, unless you go Cygwin or whatever, make's not an option. Thing is, if you're running Python 3, neither's fab. I... think? I read it's <em>supposed</em> to <em>kinda, sorta</em> work these days but personally, the most "success" I had with it is getting it to fuck up in <em>different</em> ways rather than just one. So... yay I guess?</p>
-<p>So automation's out of the question, unless you roll your own. I guess it's a good thing then that it's fairly straightforward, huh?</p>
-<p>Building a quick preview, so that you can see your theme's not fucked and your fancy formatting is displaying properly is dead simple, just run:</p>
-<p><code>pelican content</code> (Or substitute 'content' with wherever your source files for the blog are)</p>
-<p>This'll generate the whole HTML bundle in the <code>./output</code> directory right nearby.</p>
-<p>Now, once you're production-ready, you simply add <code>-s publishconf.py</code> to the whole deal, like so:</p>
-<p><code>pelican -s publishconf.py content</code></p>
-<p>So since the ./output is what you'd put on your server, all you gotta do to make it work with <a href="https://pages.github.com/">github pages</a> (click for instructions) is just:
-    1. Clone your site repo to that dir,
-    2. Run the command above,
-    3. Get that shit commited
-    4. <code>git push</code> like a bawss?</p>
-<p>Right?</p>
-<h2>Fuck no, that would've been too simple.</h2>
-<p>...But don't worry, we're <em>almost</em> there!</p>
-<p>See, thing about Pelican processing all that shit is <strong>it <em>will</em> nuke everything in the output dir <em>unless you tell it otherwise</em></strong>.</p>
-<p>Fortunately, that's a pretty easy fix, you just need to be aware of it. Basically, just open one of your config files, either <code>pelicanconf.py</code> or <code>publishconf.py</code> will do. I would recommend using the former. The latter imports all of <code>pelicanconf.py</code>'s variables into its namespace anyway.</p>
-<p>Now in said config, you gotta add:</p>
-<p><code>OUTPUT_RETENTION = (".hg", ".git", ".bzr", "README.md")</code></p>
-<p>Of course, feel free to add or remove anything to that tuple, that's what it's there for. Everything set in OUTPUT_RETENTION will not be deleted from the <code>output</code> directory. Fairly straightforward.</p>
-<p><em>NOW</em> you can go ahead and use that 4-step instruction guide just above, and you should be golden.</p>
-<p>Now get blogging.</p><p>There are <a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html#disqus_thread">comments</a>.</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <h2>..or: how the sausage is made</h2>
+<p>Setting up this blog was a bit of a hassle. At least, compared to what I expected, based on what I know about git and Python, the two main technologies underlying the whole thing. I'm writing this in hopes that someone struggling with ...</p>
+                <a class="readmore" href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html">read more</a>
+<p>There are <a href="http://keph.github.io/getting-pelican-to-play-well-with-windows-github.html#disqus_thread">comments</a>.</p>                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
